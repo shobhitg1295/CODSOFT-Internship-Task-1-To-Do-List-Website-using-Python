@@ -1,2 +1,4 @@
-# codsoft_task-1
-This repository is for the task-1.
+# CODSOFT-Internship-Task-1-To-Do-List-Website-using-Python
+To-Do-List-Website-using-Phython
+
+
