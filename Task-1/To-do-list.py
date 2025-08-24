@@ -63,7 +63,7 @@ root = tk.Tk()
 root.title("📝 To-Do List")
 root.geometry("600x500")
 root.resizable(False, False)
-root.configure(bg="#87CEEB")  # Sky blue background
+root.configure(bg="#87CEEB") 
 
 tasks = []
 
@@ -131,3 +131,4 @@ for btn, normal, hover in [
 load_tasks()
 root.protocol("WM_DELETE_WINDOW", on_exit)
 root.mainloop()
+
