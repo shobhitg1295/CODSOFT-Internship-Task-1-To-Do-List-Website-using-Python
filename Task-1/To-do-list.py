@@ -2,14 +2,13 @@ import sqlite3
 import tkinter as tk
 from tkinter import messagebox
 
-# ========== Database Setup ==========
+# Database Setup
 conn = sqlite3.connect('tasks.db')
 cursor = conn.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS tasks (title TEXT)")
 conn.commit()
 
-# ========== Functions ==========
-
+# Functions
 def load_tasks():
     tasks.clear()
     cursor.execute("SELECT title FROM tasks")
@@ -57,17 +56,16 @@ def on_exit():
     conn.close()
     root.destroy()
 
-# ========== UI Design ==========
-
+# UI Design
 root = tk.Tk()
 root.title("📝 To-Do List")
 root.geometry("600x500")
 root.resizable(False, False)
-root.configure(bg="#87CEEB") 
+root.configure(bg="#87CEEB")
 
 tasks = []
 
-# ---------- Styling ----------
+# Styling
 main_font = ("Segoe UI", 12)
 title_font = ("Segoe UI", 18, "bold")
 button_font = ("Segoe UI", 11, "bold")
@@ -78,11 +76,11 @@ button_fg = "#ffffff"
 button_hover = "#45a049"
 danger_button_bg = "#e74c3c"
 
-# ---------- Frames ----------
-main_frame = tk.Frame(root, bg="#ffffff", padx=20, pady=20, bd=2, relief=tk.RIDGE)
+# Frames
+main_frame = tk.Frame(root, bg="#d3d3d3", padx=20, pady=20, bd=2, relief=tk.RIDGE)
 main_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
-title_label = tk.Label(main_frame, text="📝 TO-DO LIST", font=title_font, bg="#ffffff", fg="#333333")
+title_label = tk.Label(main_frame, text="📝 TO-DO LIST", font=title_font, bg="#d3d3d3", fg="#8b0000")
 title_label.grid(row=0, column=0, columnspan=3, pady=(0, 20))
 
 # Task Entry
@@ -95,11 +93,11 @@ add_btn.grid(row=1, column=2, padx=5)
 
 # Task Listbox
 task_listbox = tk.Listbox(main_frame, font=main_font, width=55, height=10, bd=2, relief=tk.GROOVE,
-                          selectbackground="#ffa500", activestyle="none")
+                          selectbackground="#808080", activestyle="none")
 task_listbox.grid(row=2, column=0, columnspan=3, pady=10)
 
 # Buttons
-button_frame = tk.Frame(main_frame, bg="#ffffff")
+button_frame = tk.Frame(main_frame, bg="#d3d3d3")
 button_frame.grid(row=3, column=0, columnspan=3, pady=(10, 0))
 
 remove_btn = tk.Button(button_frame, text="Remove Task", font=button_font, bg="#f39c12", fg="#ffffff",
@@ -114,7 +112,7 @@ exit_btn = tk.Button(button_frame, text="Exit", font=button_font, bg="#34495e", 
                      width=15, command=on_exit)
 exit_btn.grid(row=0, column=2, padx=5)
 
-# ---------- Hover Effects ----------
+# Hover Effects
 def on_enter(e, btn, color): btn.config(bg=color)
 def on_leave(e, btn, color): btn.config(bg=color)
 
@@ -127,8 +125,7 @@ for btn, normal, hover in [
     btn.bind("<Enter>", lambda e, b=btn, h=hover: on_enter(e, b, h))
     btn.bind("<Leave>", lambda e, b=btn, n=normal: on_leave(e, b, n))
 
-# ========== Run ==========
+# Run
 load_tasks()
 root.protocol("WM_DELETE_WINDOW", on_exit)
 root.mainloop()
-
